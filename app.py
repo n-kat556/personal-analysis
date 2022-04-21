@@ -194,29 +194,48 @@ st.write('基本的には各ポイントが、0から4の間はその特性は�
 if choice == '外向性':
      st.write(f'外向性：{extraversion}')
      if extraversion >= 5:
-          st.write('外向性の高い人の特徴')
+          st.write('外向性が高い人の特徴')
           st.markdown('コミュニケーション力に優れ、野心を持っている')
      elif extraversion <= 4:
-          st.write('外向性の低い人の特徴')
+          st.write('外向性が低い人の特徴')
           st.markdown('物事を冷静に考察する力に優れ、家庭の安定を求める')          
+
 elif choice == '協調性':
      st.write(f'協調性：{agreeableness}')
-     st.write('協調性が高い人の特徴')
-     st.markdown('優しくて心が広い、他人に対しても親切で、協力的で素直')
+     if agreeableness >=5:
+          st.write('協調性が高い人の特徴')
+          st.markdown('優しくて心が広い、他人に対しても親切で、協力的で素直。協力的で道徳的')
+     elif agreeableness <= 4:
+          st.write('協調性が低い人の特徴')
+          st.markdown('カリスマ性があり、孤立を恐れない')         
+
 elif choice == '誠実性':
      st.write(f'誠実性：{conscientiousness}')
-     st.write('誠実性が高い人の特徴')
-     st.markdown('コツコツと計画的に物事をこなす、几帳面で一生懸命働く')
+     if conscientiousness >=5:
+          st.write('誠実性が高い人の特徴')
+          st.markdown('コツコツと計画的に物事をこなす、几帳面で一生懸命働く。自己抑制が効き、集中力が高い')
+     elif conscientiousness <= 4:
+          st.write('誠実性が低い人の特徴')
+          st.markdown('アドリブ力に長け、行動力がある')
+
 elif choice == '神経症的傾向':
      st.write(f'神経症的傾向：{neuroticism}')
-     st.write('神経症的傾向が高い人の特徴')
-     st.markdown('不安になりやすく心配性、神経質で未来に対して悲観的になりやすい、プレッシャーにも弱い')
+     if neuroticism >=5:
+          st.write('神経症傾向の高い人の特徴')
+          st.markdown('周囲の人の感情への感度が高く、空気を読むことができ、洞察力がある。コツコツと計画的に物事をこなす、几帳面で一生懸命働く。自己抑制が効き、集中力が高い')
+     elif neuroticism <= 4:
+          st.write('神経症的傾向が低い人の特徴')
+          st.markdown('恐怖心に囚われることなく頼れる存在で、温和')
+
 elif choice == '開放性':
      st.write(f'開放性：{openness}')
-     st.write('開放性が高い人の特徴')
-     st.markdown('好奇心が強く、新しいことに挑戦してオリジナリティも持っている、創造力を発揮できる、芸術的センスもある、頭の回転も早く応用力もある、学ぶ力もある、非現実的になりやすい')
-
-
+     if openness >=5:
+          st.write('開放性が高い人の特徴')
+          st.markdown('好奇心が強く、新しいことに挑戦してオリジナリティも持っている、創造力を発揮できる、芸術的センスもある、芸術性、知性に優れ、改革を好む')
+     elif openness <= 4:
+          st.write('開放性が低い人の特徴')
+          st.markdown('問題解決能力に優れ、形式的な思考を求める')
+          
 ## c = st.container()
 ## st.write("This will show last")
 ## c.write("This will show first")
