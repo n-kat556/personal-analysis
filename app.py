@@ -181,7 +181,7 @@ df = pd.DataFrame({
 
 print(df)
 
-fig = px.line_polar(df, r='value', theta='label', line_close=True,height=500, width=500, title='正確診断')
+fig = px.line_polar(df, r='value', theta='label', line_close=True,height=500, width=500, title='診断結果')
 st.plotly_chart(fig)
 # ============================================
 
@@ -189,52 +189,52 @@ personality_list = ['外向性', '協調性', '誠実性', '神経症的傾向',
 choice = st.selectbox('各特性の特徴', personality_list)
 ## choice = st.multiselect('各特性の特徴', personality_list, default='外向性')
 
-st.write('基本的には各ポイントが、0から4の間はその特性は低め、5から8の間はその特性は高めと考えられます。')
+st.caption('基本的には各ポイントが、0から4の間はその特性は低め、5から8の間はその特性は高めと考えられます。')
 
 if choice == '外向性':
      st.write(f'外向性：{extraversion}')
      if extraversion >= 5:
-          st.caption('外向性が高い人の特徴')
-          st.markdown('コミュニケーション力に優れ、野心を持っている')
+          st.write('外向性が高い人の特徴: コミュニケーション力に優れ、野心を持っている')
+          ## st.markdown('コミュニケーション力に優れ、野心を持っている')
      elif extraversion <= 4:
-          st.write('外向性が低い人の特徴')
-          st.markdown('物事を冷静に考察する力に優れ、家庭の安定を求める')          
+          st.write('外向性が低い人の特徴: 物事を冷静に考察する力に優れ、家庭の安定を求める')
+          ## st.markdown('物事を冷静に考察する力に優れ、家庭の安定を求める')          
 
 elif choice == '協調性':
      st.write(f'協調性：{agreeableness}')
      if agreeableness >=5:
-          st.title('協調性が高い人の特徴')
-          st.markdown('優しくて心が広い、他人に対しても親切で、協力的で素直。協力的で道徳的')
+          st.write('協調性が高い人の特徴: 優しくて心が広い、他人に対しても親切で、協力的で素直。協力的で道徳的')
+          ## st.markdown('優しくて心が広い、他人に対しても親切で、協力的で素直。協力的で道徳的')
      elif agreeableness <= 4:
-          st.write('協調性が低い人の特徴')
-          st.markdown('カリスマ性があり、孤立を恐れない')         
+          st.write('協調性が低い人の特徴: カリスマ性があり、孤立を恐れない')
+          ## st.markdown('カリスマ性があり、孤立を恐れない')         
 
 elif choice == '誠実性':
      st.write(f'誠実性：{conscientiousness}')
      if conscientiousness >=5:
-          st.header('誠実性が高い人の特徴')
-          st.markdown('コツコツと計画的に物事をこなす、几帳面で一生懸命働く。自己抑制が効き、集中力が高い')
+          st.write('誠実性が高い人の特徴: コツコツと計画的に物事をこなす、几帳面で一生懸命働く。自己抑制が効き、集中力が高い')
+          ## st.markdown('コツコツと計画的に物事をこなす、几帳面で一生懸命働く。自己抑制が効き、集中力が高い')
      elif conscientiousness <= 4:
-          st.write('誠実性が低い人の特徴')
-          st.markdown('アドリブ力に長け、行動力がある')
+          st.write('誠実性が低い人の特徴: アドリブ力に長け、行動力がある')
+          ## st.markdown('アドリブ力に長け、行動力がある')
 
 elif choice == '神経症的傾向':
      st.write(f'神経症的傾向：{neuroticism}')
      if neuroticism >=5:
-          st.write('神経症傾向の高い人の特徴')
-          st.markdown('周囲の人の感情への感度が高く、空気を読むことができ、洞察力がある')
+          st.write('神経症傾向の高い人の特徴: 周囲の人の感情への感度が高く、空気を読むことができ、洞察力がある')
+          ## st.markdown('周囲の人の感情への感度が高く、空気を読むことができ、洞察力がある')
      elif neuroticism <= 4:
-          st.write('神経症的傾向が低い人の特徴')
-          st.markdown('恐怖心に囚われることなく頼れる存在で、温和')
+          st.write('神経症的傾向が低い人の特徴: 恐怖心に囚われることなく頼れる存在で、温和')
+          ## st.markdown('恐怖心に囚われることなく頼れる存在で、温和')
 
 elif choice == '開放性':
      st.write(f'開放性：{openness}')
      if openness >=5:
-          st.write('開放性が高い人の特徴')
-          st.markdown('好奇心が強く、新しいことに挑戦してオリジナリティも持っている、創造力を発揮できる、芸術的センスもある、芸術性、知性に優れ、改革を好む')
+          st.write('開放性が高い人の特徴: 好奇心が強く、新しいことに挑戦してオリジナリティも持っている、創造力を発揮できる、芸術的センスもある、芸術性、知性に優れ、改革を好む')
+          ## st.markdown('好奇心が強く、新しいことに挑戦してオリジナリティも持っている、創造力を発揮できる、芸術的センスもある、芸術性、知性に優れ、改革を好む')
      elif openness <= 4:
-          st.write('開放性が低い人の特徴')
-          st.markdown('問題解決能力に優れ、形式的な思考を求める')
+          st.write('開放性が低い人の特徴: 問題解決能力に優れ、形式的な思考を求める')
+          ## st.markdown('問題解決能力に優れ、形式的な思考を求める')
           
 ## c = st.container()
 ## st.write("This will show last")
