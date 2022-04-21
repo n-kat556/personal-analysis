@@ -149,28 +149,72 @@ a10 = point_to_num(point)
 st.info(f'回答：{a10}')
 
 
-st.header('性格診断をしてみる')
-clicked = st.button('診断開始')
-
 extraversion = a1 + (4 - a6)
 agreeableness = a2 + (4 - a7)
 conscientiousness = a3 + (4 - a8)
 neuroticism = a4 + (4 - a9)
 openness = a5 + (4 - a10)
 
-st.write(f'外向性：{extraversion}')
-st.markdown('それぞれ簡単に説明しておくと、外向性というのは人とコミュニケーションをする能力の高さであったり初対面の人に対するコミュニケーション能力の高さになります。これは高ければ高いほど人間関係も良くなりますし、収入も高くなりやすいと言われています。外向性は本来は高い方が人脈は当然作りやすいですが、これはある程度技術で補うこともできるものです。この外向性が低くなると内向的ということになり、これは決して悪いことではありませんが、どちらかと言うと自分でじっくり考えるタイプです。')
+st.markdown("---") #区切り線
+## if st.button('診断を開始する'):
 
-st.write(f'協調性：{agreeableness}')
-st.markdown('協調性については、この点数が低い方が他人の考えに流されにくくなります。協調性が高いとみんなと仲良くすることができますし社会の中で上手くやっていくことができますが、他人の目が気になってしまい他人から抜きん出ることができなくなってしまいます。そのため協調性は高ければ高いほど一般的には収入が低くなる傾向があるとされています。')
 
-st.write(f'誠実性：{conscientiousness}')
-st.markdown('誠実性は人生で成功するための万能能力と呼ばれている特性です。コツコツと物事を継続する真面目さが誠実性ですので、逆にこの誠実性が低い人は衝動的ということになります。物事に対する計画性がなかったり、衝動的に物事の判断をしてしまう傾向があるのであまり我慢ができないようなタイプになります。もちろん衝動性が有利になる場面もありますが、誠実性が低いと集中力も低い傾向がありますので誠実性は高い方がいいです。')
+# ============================================
+# レーダーチャート ▶︎
+# 空のGraph Objectsを作成
+# ============================================
+import plotly.express as px
+import pandas as pd
 
-st.write(f'神経症的傾向：{neuroticism}')
-st.markdown('神経症的傾向はメンタルの弱さですから、これは高ければ高いほど心配性で不安を感じやすくなります。低ければ低いほど物事に動じることが少なくストレスも抱えにくくなります。')
+data = [
+     {"label": "外向性", "value": extraversion},
+     {"label": "協調性", "value": agreeableness},
+     {"label": "誠実性", "value": conscientiousness},
+     {"label": "神経症的傾向", "value": neuroticism},
+     {"label": "開放性", "value": openness},
+]
 
-st.write(f'開放性：{openness}')
-st.markdown('開放性は好奇心と創造力になりますので、開放性が高ければ高いほどクリエイティブで新しいことを思いついたり新しいものを取り込む能力は高くなります。その反面、無茶なことをしたりリスクを取りやすくなる傾向はあります。逆に開放性が低い場合には保守的になります。現実的に物事を考えたりすることは得意ではありますが、保守的になってしまうのでなかなか新しい挑戦をしたりすることが難しくはなります。')
+df = pd.DataFrame({
+     "label": [record["label"] for record in data],
+     "value": [record["value"] for record in data],
+})
 
+print(df)
+
+fig = px.line_polar(df, r='value', theta='label', line_close=True,height=500, width=500, title='正確診断')
+st.plotly_chart(fig)
+# ============================================
+
+personality_list = ['外向性', '協調性', '誠実性', '神経症的傾向', '開放性']
+choice = st.selectbox('各特性の特徴', personality_list)
+## choice = st.multiselect('各特性の特徴', personality_list, default='外向性')
+
+st.write('基本的には各ポイントが、0から4の間はその特性は低め、5から8の間はその特性は高めと考えられます。')
+
+if choice == '外向性':
+     st.write(f'外向性：{extraversion}')
+     st.write('外向性が高い人の特徴')
+     st.markdown('喋るのが好き、陽気なタイプ、社交的で活動的、積極的')
+elif choice == '協調性':
+     st.write(f'協調性：{agreeableness}')
+     st.write('協調性が高い人の特徴')
+     st.markdown('優しくて心が広い、他人に対しても親切で、協力的で素直')
+elif choice == '誠実性':
+     st.write(f'誠実性：{conscientiousness}')
+     st.write('誠実性が高い人の特徴')
+     st.markdown('コツコツと計画的に物事をこなす、几帳面で一生懸命働く')
+elif choice == '神経症的傾向':
+     st.write(f'神経症的傾向：{neuroticism}')
+     st.write('神経症的傾向が高い人の特徴')
+     st.markdown('不安になりやすく心配性、神経質で未来に対して悲観的になりやすい、プレッシャーにも弱い')
+elif choice == '開放性':
+     st.write(f'開放性：{openness}')
+     st.write('開放性が高い人の特徴')
+     st.markdown('好奇心が強く、新しいことに挑戦してオリジナリティも持っている、創造力を発揮できる、芸術的センスもある、頭の回転も早く応用力もある、学ぶ力もある、非現実的になりやすい')
+
+
+## c = st.container()
+## st.write("This will show last")
+## c.write("This will show first")
+## c.write("This will show second")
 
