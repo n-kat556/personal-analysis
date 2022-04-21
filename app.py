@@ -193,8 +193,12 @@ st.write('基本的には各ポイントが、0から4の間はその特性は�
 
 if choice == '外向性':
      st.write(f'外向性：{extraversion}')
-     st.write('外向性が高い人の特徴')
-     st.markdown('喋るのが好き、陽気なタイプ、社交的で活動的、積極的')
+     if extraversion >= 5:
+          st.write('外向性の高い人の特徴')
+          st.markdown('コミュニケーション力に優れ、野心を持っている')
+     elif extraversion <= 4:
+          st.write('外向性の低い人の特徴')
+          st.markdown('物事を冷静に考察する力に優れ、家庭の安定を求める')          
 elif choice == '協調性':
      st.write(f'協調性：{agreeableness}')
      st.write('協調性が高い人の特徴')
